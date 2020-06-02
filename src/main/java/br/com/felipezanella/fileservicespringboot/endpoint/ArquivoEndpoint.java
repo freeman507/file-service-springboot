@@ -19,16 +19,16 @@ public class ArquivoEndpoint {
     private ArquivoService arquivoService;
 
     @PostMapping
-    public void insert(
-            @RequestParam("file") MultipartFile multipartFile
-    ) throws IOException {
+    public void insert(@RequestParam("file") MultipartFile multipartFile) throws IOException {
         arquivoService.insert(multipartFile);
     }
 
     @GetMapping("{idArquivo}")
     public ResponseEntity<Resource> findById(@PathVariable("idArquivo") Long idArquivo) {
         Arquivo arquivo = arquivoService.findById(idArquivo);
-        return ResponseEntity.ok().header(HttpHeaders.CONTENT_DISPOSITION,
-                "attachment; filename=\"" + arquivo.getNomeArquivo() + "\"").body(arquivo.getResource());
+        return ResponseEntity.ok().header(
+                HttpHeaders.CONTENT_DISPOSITION,
+                "attachment; filename=\"" + arquivo.getNomeArquivo() + "\""
+        ).body(arquivo.getResource());
     }
 }
