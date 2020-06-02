@@ -2,10 +2,8 @@ package br.com.felipezanella.fileservicespringboot.service;
 
 import br.com.felipezanella.fileservicespringboot.model.Arquivo;
 import br.com.felipezanella.fileservicespringboot.repository.ArquivoRepository;
-import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.InputStreamResource;
-import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -24,9 +22,13 @@ public class ArquivoService {
     }
 
     public void insert(MultipartFile multipartFile) throws IOException {
+
         Arquivo arquivo = new Arquivo();
+
         arquivo.setNomeArquivo(multipartFile.getOriginalFilename());
-        arquivo.setConteudo(IOUtils.toByteArray(multipartFile.getInputStream()));
+
+        arquivo.setConteudo(multipartFile.getBytes());
+
         insert(arquivo);
     }
 
