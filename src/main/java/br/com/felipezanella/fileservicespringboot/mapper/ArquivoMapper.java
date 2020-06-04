@@ -14,6 +14,7 @@ public class ArquivoMapper implements RowMapper<Arquivo> {
         Arquivo arquivo = new Arquivo();
         arquivo.setIdArquivo(resultSet.getLong("ID_ARQUIVO"));
         arquivo.setNomeArquivo(resultSet.getString("NOME_ARQUIVO"));
+        arquivo.setConteudo(resultSet.getBytes("CONTEUDO"));
 
         return arquivo;
     }
