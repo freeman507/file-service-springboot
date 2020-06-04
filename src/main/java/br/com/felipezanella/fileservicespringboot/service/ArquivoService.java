@@ -10,6 +10,7 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.List;
 
 @Service
 public class ArquivoService {
@@ -43,4 +44,7 @@ public class ArquivoService {
         return arquivo;
     }
 
+    public List<Arquivo> findAll() {
+        return arquivoRepository.findAll();
+    }
 }

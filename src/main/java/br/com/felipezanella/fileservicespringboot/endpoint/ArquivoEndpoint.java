@@ -10,9 +10,11 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.util.List;
 
 @RestController
 @RequestMapping("arquivo")
+@CrossOrigin(origins = "*")
 public class ArquivoEndpoint {
 
     @Autowired
@@ -30,5 +32,10 @@ public class ArquivoEndpoint {
                 HttpHeaders.CONTENT_DISPOSITION,
                 "attachment; filename=\"" + arquivo.getNomeArquivo() + "\""
         ).body(arquivo.getResource());
+    }
+
+    @GetMapping
+    public List<Arquivo> findAll() {
+        return arquivoService.findAll();
     }
 }

@@ -7,6 +7,7 @@ import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @Repository
@@ -35,4 +36,9 @@ public class ArquivoRepository {
         namedParameterJdbcTemplate.update(sql, params);
     }
 
+    public List<Arquivo> findAll() {
+        String sql = "select * from arquivo";
+
+        return namedParameterJdbcTemplate.query(sql, new HashMap<>(), new ArquivoMapper());
+    }
 }
